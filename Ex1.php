@@ -7,5 +7,6 @@
 <body>
  <h1>Mon fichier HTML</h1>
  <p>Aujourd'hui nous sommes le : <?php echo date('d/m/Y'); ?></p>
+ <p>Et je teste git et VSCode </p>
 </body>
 </html>
