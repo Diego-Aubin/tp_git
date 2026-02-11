@@ -1,0 +1,84 @@
+{% extends "gabarit.twig" %}
+
+{% block title %}Page d'accueil{% endblock %}
+
+{% block contenu %}
+   <h1>Sélection {{ produits.collection }} {{ produits.annee }}</h1>
+   <section class="produits">
+      {% for tsh in produits.tshirts %}
+            <article class="prod">
+               <div class="figure">
+                  <img src="medias/{{ tsh.image }}" alt="produit {{ tsh.nom }}">
+               </div>
+
+               <div class="desc">
+                  <h2>
+                     <a href="afficheProduit.php?idp={{ tsh.id }}">{{ tsh.nom }}</a>
+                  </h2>
+
+                  <p class="prix">
+                     {{ tsh.prix }} €
+                     {% if tsh.promo %}
+                        <span class="promo">(promotion)</span>
+                     {% endif %}
+                  </p>
+
+                  <p class="description">
+                     <strong>Modèle {{ tsh.categorie }}</strong><br>
+                     {{ tsh.description }}
+                  </p>
+               </div>
+
+               <div class="notation">
+
+                  {% if tsh.notation == 5 %}
+                     {% for i in 1..5 %}
+                        <span class="starOn">...</span>
+                     {% endfor %}
+                  {% endif %}
+               
+                  {% if tsh.notation == 4 %}
+                     {% for i in 1..4 %}
+                        <span class="starOn">...</span>
+                     {% endfor %}
+                     <span class="starOff">...</span>
+                  {% endif %}
+               
+                  {% if tsh.notation == 3 %}
+                     {% for i in 1..3 %}
+                        <span class="starOn">...</span>
+                     {% endfor %}
+                     {% for i in 1..2 %}
+                        <span class="starOff">...</span>
+                     {% endfor %}
+                  {% endif %}
+               
+                  {% if tsh.notation == 2 %}
+                     {% for i in 1..2 %}
+                        <span class="starOn">...</span>
+                     {% endfor %}
+                     {% for i in 1..3 %}
+                        <span class="starOff">...</span>
+                     {% endfor %}
+                  {% endif %}
+               
+                  {% if tsh.notation == 1 %}
+                     <span class="starOn">...</span>
+                     {% for i in 1..4 %}
+                        <span class="starOff">...</span>
+                     {% endfor %}
+                  {% endif %}
+               
+                  {% if tsh.notation == 0 %}
+                     {% for i in 1..5 %}
+                        <span class="starOff">...</span>
+                     {% endfor %}
+                  {% endif %}
+               
+               </div>
+               
+
+            </article>
+      {% endfor %}
+   </section>
+{% endblock %}
